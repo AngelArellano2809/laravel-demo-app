@@ -9,21 +9,20 @@
 </head>
 
 <body>
-    <form action="/my-handling-form-page" method="post">
-        <ul>
-            <li>
-                <label for="name">Nombre:</label>
-                <input type="text" id="name" name="user_name" />
-            </li>
-            <li>
-                <label for="mail">Correo electrónico:</label>
-                <input type="email" id="mail" name="user_mail" />
-            </li>
-            <li>
-                <label for="msg">Mensaje:</label>
-                <textarea id="msg" name="user_message"></textarea>
-            </li>
-        </ul>
+    <form action="/new-contact" method="post">
+        @csrf
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="user_name" />
+        <br>
+        <label for="mail">Correo electrónico:</label>
+        <input type="email" id="mail" name="user_mail" />
+        <br>
+        <label for="msg">Mensaje:</label>
+        <textarea id="msg" name="user_message"></textarea>
+        <br>
+        <button type="submit">
+            Enviar
+        </button>
     </form>
 </body>
 

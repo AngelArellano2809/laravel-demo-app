@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,4 +13,9 @@ Route::get('/home', function () {
 
 Route::get('/contact', function () {
     return view('contact');
+});
+
+Route::post('/new-contact', function (Request $request) {
+    dd($request->all() , $request->user_mail   );
+    // dd('listo');
 });
