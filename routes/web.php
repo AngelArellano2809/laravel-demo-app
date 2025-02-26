@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -11,11 +11,6 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::get('/contact', [MessageController::class, 'create']);
 
-Route::post('/new-contact', function (Request $request) {
-    dd($request->all() , $request->user_mail   );
-    // dd('listo');
-});
+Route::post('/new-contact', [MessageController::class, 'store']);
