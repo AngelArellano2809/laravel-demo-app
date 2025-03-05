@@ -14,3 +14,5 @@ Route::get('/home', function () {
 Route::get('/contact', [MessageController::class, 'create']);
 
 Route::post('/new-contact', [MessageController::class, 'store']);
+
+Route::get('/messages', [MessageController::class, 'index']);
