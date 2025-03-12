@@ -12,9 +12,9 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages = Message::all();
-        //dd($messages);
-        return view('message-list', compact('messages'));
+        return view('message-list', [
+            'messages' => Message::all()
+        ]);
     }
 
     /**
@@ -49,7 +49,7 @@ class MessageController extends Controller
      */
     public function show(Message $message)
     {
-        //
+        return view('message.show-message', compact('message'));
     }
 
     /**
@@ -57,7 +57,7 @@ class MessageController extends Controller
      */
     public function edit(Message $message)
     {
-        //
+        return view('messages.edit-message', compact('message'));
     }
 
     /**
@@ -65,7 +65,18 @@ class MessageController extends Controller
      */
     public function update(Request $request, Message $message)
     {
-        //
+        $request->validate([
+            'user_name' => 'required|min:3|max:255',
+            'user_mail' => ['required', 'email', 'max:255'],
+            'user_message' => ['required', 'min:15']
+        ]);
+
+        $message->user_name = $request->user_name;
+        $message->user_mail = $request->user_mail;
+        $message->user_message = $request->user_message;
+        $message->save();
+
+        return redirect()->route('messages.show', $message);
     }
 
     /**
@@ -73,6 +84,7 @@ class MessageController extends Controller
      */
     public function destroy(Message $message)
     {
-        //
+        $message->delete();
+        return redirect()->route('message.index');
     }
 }

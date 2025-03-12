@@ -9,21 +9,31 @@
 </head>
 
 <body>
-    <h1>Listado de mensajes</h1>
+    <h1>Mensajes Recibidos</h1>
     <table border="1">
         <tr>
+            <th>ID</th>
             <th>Nombre</th>
             <th>Correo</th>
             <th>Fecha</th>
+            <th>Acciones</th>
         </tr>
         @foreach ($messages as $message)
             <tr>
+                <td>
+                    <a href="{{ route('message.show', $message->id) }}">{{ $message->id }}</a>
+                </td>
                 <td>{{ $message->user_name }}</td>
                 <td>{{ $message->user_mail }}</td>
                 <td>{{ $message->created_at }}</td>
+                <td>
+                    <a href="{{ route('message.edit', $message) }}">Editar</a>
+                </td>
             </tr>
         @endforeach
+
     </table>
+
 </body>
 
 </html>
